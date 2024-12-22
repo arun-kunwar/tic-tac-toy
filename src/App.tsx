@@ -1,4 +1,4 @@
-import Nav_bar from "./components/Nav_bar"
+import Nav_bar from "./components/Tic-tac"
 
 
 

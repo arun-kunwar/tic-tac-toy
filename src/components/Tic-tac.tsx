@@ -3,8 +3,8 @@ import { useState } from "react";
 
 function NavBar() {
    const[xIsNext,setXIsNext]=useState(true)
+   const[sq,setsq]=useState(Array(9).fill(null));
 
-  const[sq,setsq]=useState(Array(9).fill(null));
   function handleclick(i){
     if(sq[i]){
       return;
@@ -57,16 +57,13 @@ function reset(){
 return (
     <div className="top-0 bottom-0 text-center mt-20">
       <div className="mb-2">{gameStatus}</div>
+     
         <div className="grid grid-cols-3 border border-black w-60 mx-auto">
-        <div className="border border-black w-20 h-20 flex items-center justify-center"><Sq value={sq[0]} sqclick={()=>handleclick(0)}/></div>
-        <div className="border border-black w-20 h-20 flex items-center justify-center"><Sq value={sq[1]}  sqclick={()=>handleclick(1)}/></div>
-        <div className="border border-black w-20 h-20 flex items-center justify-center"><Sq value={sq[2]}  sqclick={()=>handleclick(2)} /></div>
-        <div className="border border-black w-20 h-20 flex items-center justify-center"><Sq value={sq[3]}  sqclick={()=>handleclick(3)}/></div>
-        <div className="border border-black w-20 h-20 flex items-center justify-center"><Sq value={sq[4]}  sqclick={()=>handleclick(4)}/></div>
-        <div className="border border-black w-20 h-20 flex items-center justify-center"><Sq value={sq[5]}  sqclick={()=>handleclick(5)}/></div>
-        <div className="border border-black w-20 h-20 flex items-center justify-center"><Sq value={sq[6]}  sqclick={()=>handleclick(6)}/></div>
-        <div className="border border-black w-20 h-20 flex items-center justify-center"><Sq value={sq[7]}  sqclick={()=>handleclick(7)}/></div>
-        <div className="border border-black w-20 h-20 flex items-center justify-center"><Sq value={sq[8]}  sqclick={()=>handleclick(8)}/></div>
+        { sq.map((value,index)=>(
+        <div  key={index} className="border border-black w-20 h-20 flex items-center justify-center"> 
+        <Sq value={value} sqclick={()=>handleclick(index)}/>
+        </div>
+      ))}
       </div>
       <div> <button className="border border-gray-300 bg-sky-800 w-20 h-12 mt-4 rounded-md hover:bg-sky-400" onClick={reset}>Restart</button></div>
     </div>
